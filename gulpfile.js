@@ -1,3 +1,5 @@
+var gulp = require('gulp');
+
 function startExpress() {
     var express = require('express');
     var app = express();
