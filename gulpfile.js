@@ -12,8 +12,8 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('livereload', function() {
-    gulp.src(['css/*.css', 'js/*.js', 'index.html'])
-        .pipe(watch(['css/*.css', 'js/*.js', 'index.html']))
+    gulp.src(['css/*.css', 'js/*.js', '*.html'])
+        .pipe(watch(['css/*.css', 'js/*.js', '*.html']))
         .pipe(connect.reload());
 });
 
