@@ -1,25 +1,35 @@
 'use strict';
 
 var gulp = require('gulp'),
-    less = require('gulp-less'),
-    livereload = require('gulp-livereload'),
-    http = require('http'),
-    st = require('st');
+    connect = require('gulp-connect'),
+    watch = require('gulp-watch'),
+    less = require('gulp-less');
+
+gulp.task('webserver', function() {
+    connect.server({
+        livereload: true
+    });
+});
+
+gulp.task('livereload', function() {
+    gulp.src(['.tmp/styles/*.css', 'js/*.js'])
+        .pipe(watch(['.tmp/styles/*.css', 'js/*.js']))
+        .pipe(connect.reload());
+});
+
+gulp.task('reload', function() {
+    connect.reload();
+});
 
 gulp.task('less', function() {
-    gulp.src('app/styles/*.less')
+    gulp.src('less/*.less')
         .pipe(less())
-        .pipe(gulp.dest('css/styles'))
-        .pipe(livereload());
+        .pipe(gulp.dest('.tmp/styles'));
 });
 
-gulp.task('watch', ['server'], function() {
-    livereload.listen({ basePath: 'dist' });
+gulp.task('watch', function() {
     gulp.watch('less/*.less', ['less']);
+    //gulp.watch('scripts/*.coffee', ['coffee']);
 });
 
-gulp.task('server', function(done) {
-    http.createServer(
-        st({ path: __dirname + '/dist', index: 'index.html', cache: false })
-    ).listen(8080, done);
-});
+gulp.task('default', ['less', 'webserver', 'livereload', 'watch']);
