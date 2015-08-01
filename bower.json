@@ -1,0 +1,20 @@
+{
+  "name": "angular-animate-sandbox",
+  "version": "0.0.0",
+  "authors": [
+    "James Hines <jameshines10@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-ui-router": "~0.2.15",
+    "angular-animate": "~1.4.3"
+  }
+}
