@@ -4,6 +4,7 @@
 angular.module('main', [])
 
     .controller('MainController', function($scope){
-        $scope.data = 'This is';
+        $scope.data = 'This is data';
+        $scope.moreData = '';
     });
 

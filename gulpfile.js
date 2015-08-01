@@ -12,24 +12,19 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('livereload', function() {
-    gulp.src(['.tmp/styles/*.css', 'js/*.js'])
-        .pipe(watch(['.tmp/styles/*.css', 'js/*.js']))
+    gulp.src(['css/*.css', 'js/*.js', 'index.html'])
+        .pipe(watch(['css/*.css', 'js/*.js', 'index.html']))
         .pipe(connect.reload());
-});
-
-gulp.task('reload', function() {
-    connect.reload();
 });
 
 gulp.task('less', function() {
     gulp.src('less/*.less')
         .pipe(less())
-        .pipe(gulp.dest('.tmp/styles'));
+        .pipe(gulp.dest('css'));
 });
 
 gulp.task('watch', function() {
     gulp.watch('less/*.less', ['less']);
-    //gulp.watch('scripts/*.coffee', ['coffee']);
 });
 
 gulp.task('default', ['less', 'webserver', 'livereload', 'watch']);
